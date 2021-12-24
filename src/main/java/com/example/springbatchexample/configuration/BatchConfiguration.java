@@ -1,7 +1,4 @@
 package com.example.springbatchexample.configuration;
-
-
-
 import com.example.springbatchexample.dto.Persona;
 import com.example.springbatchexample.listener.JobListener;
 import com.example.springbatchexample.processor.PersonaItemProcessor;

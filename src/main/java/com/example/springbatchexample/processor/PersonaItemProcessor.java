@@ -1,5 +1,4 @@
 package com.example.springbatchexample.processor;
-
 import com.example.springbatchexample.dto.Persona;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
