@@ -9,7 +9,7 @@ public class PersonaItemProcessor implements ItemProcessor<Persona, Persona> {
     private static final Logger LOG = LoggerFactory.getLogger(PersonaItemProcessor.class);
 
     @Override
-    public Persona process(Persona item) throws Exception {
+    public Persona process(Persona item)  {
         String primerNombre = item.getPrimerNombre().toUpperCase();
         String segundoNombre = item.getSegundoNombre().toUpperCase();
         String telefono = item.getTelefono();

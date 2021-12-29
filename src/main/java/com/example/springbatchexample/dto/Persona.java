@@ -1,10 +1,16 @@
 package com.example.springbatchexample.dto;
+import org.springframework.jdbc.core.JdbcTemplate;
 
 public class Persona {
 
+    private JdbcTemplate jdbcTemplate;
     private String primerNombre;
     private String segundoNombre;
     private String telefono;
+
+    public int getCountPerson() {
+        return jdbcTemplate.queryForObject("SELECT COUNT(*) FROM PERSON", Integer.class);
+    }
 
     public Persona() {
         super();
@@ -41,11 +47,6 @@ public class Persona {
         this.telefono = telefono;
     }
 
-    @Override
-    public String toString() {
-        return "Persona [primerNombre=" + primerNombre + ", segundoNombre=" + segundoNombre + ", telefono=" + telefono
-                + "]";
-    }
 
 
 

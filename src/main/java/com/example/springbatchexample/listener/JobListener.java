@@ -13,7 +13,7 @@ public class JobListener extends JobExecutionListenerSupport {
 
     private static final org.slf4j.Logger LOG =  LoggerFactory.getLogger(JobListener.class);
 
-    private JdbcTemplate jdbcTemplate;
+    JdbcTemplate jdbcTemplate;
 
     @Autowired
     public JobListener(JdbcTemplate jdbcTemplate) {
@@ -25,12 +25,17 @@ public class JobListener extends JobExecutionListenerSupport {
     public void afterJob(JobExecution jobExecution) {
         if (jobExecution.getStatus() == BatchStatus.COMPLETED) {
             LOG.info("FINALIZÓ EL JOB!! Verifica los resultados:");
+                selectQuery();
 
-            jdbcTemplate
-                    .query("SELECT primer_nombre, segundo_nombre, telefono FROM persona",
-                            (rs, row) -> new Persona(rs.getString(1), rs.getString(2), rs.getString(3)))
-                    .forEach(persona -> LOG.info("Registro < " + persona + " >"));
         }
+    }
+
+    public void selectQuery(){
+        jdbcTemplate.query("SELECT primer_nombre, segundo_nombre, telefono FROM persona",
+                (rs, row) -> new Persona(rs.getString(1), rs.getString(2),
+                        rs.getString(3))).forEach(persona -> LOG.info("Registro < "
+                + persona + " >"));
+
     }
 
 }
